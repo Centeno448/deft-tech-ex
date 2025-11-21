@@ -17,9 +17,9 @@ export default function ProductCard({ product }: ProductCardProps) {
     (p) => p.name === product.name
   );
 
-  const shouldDisableAddCartButton = productInCart
+  const shouldDisableInteraction = productInCart
     ? productInCart.amount === product.amount
-    : false;
+    : product.amount === 0;
 
   const handleAddToCart = () => {
     if (!purchaseAmount) {
@@ -44,7 +44,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         <td>{product.name}</td>
         <td>{product.amount}</td>
         <td>
-          ${customerType === CustomerType.Member
+          $
+          {customerType === CustomerType.Member
             ? product.memberPrice
             : product.regularPrice}
         </td>
@@ -53,13 +54,11 @@ export default function ProductCard({ product }: ProductCardProps) {
             type="number"
             min={1}
             max={product.amount}
+            disabled={shouldDisableInteraction}
             value={purchaseAmount}
             onChange={handlePurchaseAmountChange}
           />
-          <button
-            disabled={shouldDisableAddCartButton}
-            onClick={handleAddToCart}
-          >
+          <button disabled={shouldDisableInteraction} onClick={handleAddToCart}>
             Add to cart
           </button>
         </td>
