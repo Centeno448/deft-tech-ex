@@ -1,6 +1,6 @@
 import path from "path";
 import { open } from "node:fs/promises";
-import { Product, TaxStatus } from "./product";
+import { Product, TaxStatus } from "../common/product";
 
 export async function initInventory(): Promise<Product[]> {
   const products: Product[] = [];

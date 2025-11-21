@@ -1,5 +1,5 @@
 import { parseProduct, initInventory } from "./inventory";
-import { TaxStatus } from "./product";
+import { TaxStatus } from "../common/product";
 
 describe("parseProduct", () => {
   test("parses correctly with taxable", () => {
