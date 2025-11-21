@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
-import { useAppDispatch } from "./hooks";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "./hooks";
 import { updateInventory } from "./store";
 import { Link } from "react-router";
 import "./qmart.scss";
 
 export default function QMart() {
   const dispatch = useAppDispatch();
+  const storeProducts = useAppSelector((s) => s.inventory.value);
 
   useEffect(() => {
     const initInv = async () => {
-      const products = await window.productInventory.initInventory();
-      dispatch(updateInventory(products));
+      if (!storeProducts.length) {
+        const products = await window.productInventory.initInventory();
+        dispatch(updateInventory(products));
+      }
     };
     initInv();
   }, []);
