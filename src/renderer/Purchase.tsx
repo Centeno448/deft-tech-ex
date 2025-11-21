@@ -1,3 +1,3 @@
-export default function Puchase() {
-  return <p>Im a new route</p>;
+export default function Purchase() {
+  return <p>pruchase route</p>;
 }
