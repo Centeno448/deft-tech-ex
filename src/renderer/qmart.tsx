@@ -18,7 +18,7 @@ export default function QMart() {
     <div className="container">
       <h1>Quick Mart</h1>
 
-      <Link to="/purchase">
+      <Link to="/purchase/membership">
         <button>New Purchase</button>
       </Link>
     </div>
