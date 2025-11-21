@@ -4,11 +4,11 @@ export enum TaxStatus {
 }
 
 export class Product {
-  private name: string;
-  private amount: number;
-  private regularPrice: number;
-  private memberPrice: number;
-  private taxStatus: TaxStatus;
+  name: string;
+  amount: number;
+  regularPrice: number;
+  memberPrice: number;
+  taxStatus: TaxStatus;
 
   constructor(
     name: string,
@@ -24,27 +24,7 @@ export class Product {
     this.taxStatus = taxStatus;
   }
 
-  getName() {
-    return this.name;
-  }
-
-  getTaxStatus() {
-    return this.taxStatus;
-  }
-
-  getAmount() {
-    return this.amount;
-  }
-
-  getMemberPrice() {
-    return this.memberPrice;
-  }
-
-  getRegularPrice() {
-    return this.regularPrice;
-  }
-
   calculateSavings(): number {
-    return this.regularPrice - this.memberPrice;
+    return +(this.regularPrice - this.memberPrice).toFixed(2);
   }
 }
