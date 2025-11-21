@@ -1,9 +1,15 @@
-import { Product, TaxStatus } from "./product";
+import { Product, TaxStatus, calculateSavings } from "./product";
 
 describe("Product", () => {
   test("calculates savings correctly", () => {
-    const p = new Product("a", 1, 4.75, 4.33, TaxStatus.TaxExempt);
+    const p: Product = {
+      name: "a",
+      amount: 1,
+      regularPrice: 4.75,
+      memberPrice: 4.33,
+      taxStatus: TaxStatus.TaxExempt,
+    };
 
-    expect(p.calculateSavings()).toEqual(0.42);
+    expect(calculateSavings(p)).toEqual(0.42);
   });
 });

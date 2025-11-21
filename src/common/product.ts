@@ -3,28 +3,14 @@ export enum TaxStatus {
   Taxable = "Taxable",
 }
 
-export class Product {
+export interface Product {
   name: string;
   amount: number;
   regularPrice: number;
   memberPrice: number;
   taxStatus: TaxStatus;
+}
 
-  constructor(
-    name: string,
-    amount: number,
-    regularPrice: number,
-    memberPrice: number,
-    taxStatus: TaxStatus
-  ) {
-    this.name = name;
-    this.amount = amount;
-    this.regularPrice = regularPrice;
-    this.memberPrice = memberPrice;
-    this.taxStatus = taxStatus;
-  }
-
-  calculateSavings(): number {
-    return +(this.regularPrice - this.memberPrice).toFixed(2);
-  }
+export function calculateSavings(product: Product): number {
+  return +(product.regularPrice - product.memberPrice).toFixed(2);
 }

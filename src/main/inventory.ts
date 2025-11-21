@@ -24,5 +24,5 @@ export function parseProduct(line: string): Product {
   const memberPrice = Number(res[4]);
   const taxStatus = res[5] as TaxStatus;
 
-  return new Product(name, amount, regularPrice, memberPrice, taxStatus);
+  return { name, amount, regularPrice, memberPrice, taxStatus };
 }
