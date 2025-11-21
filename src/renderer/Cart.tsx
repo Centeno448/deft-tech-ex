@@ -1,12 +1,19 @@
 import { Link } from "react-router";
-import { useAppSelector } from "./hooks";
+import { useAppDispatch, useAppSelector } from "./hooks";
 import ProductCard from "./ProductCard";
 import CartRow from "./CartRow";
 import "./Cart.scss";
+import { clearPurchaseCart } from "./store";
 
 export default function Membership() {
+  const dispatch = useAppDispatch();
+
   const products = useAppSelector((s) => s.inventory.value);
   const productsInCart = useAppSelector((s) => s.purchase.cart);
+
+  const handleClearCart = () => {
+    dispatch(clearPurchaseCart());
+  };
 
   return (
     <>
@@ -30,6 +37,7 @@ export default function Membership() {
         </table>
 
         <table>
+          <button onClick={handleClearCart}>Clear Cart</button>
           <thead>
             <tr>
               <th>Name</th>
