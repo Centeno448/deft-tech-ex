@@ -1,8 +1,17 @@
 import path from "path";
+import { open } from "node:fs/promises";
 import { Product, TaxStatus } from "./product";
 
-export function initInventory(): Product[] {
-  return [];
+export async function initInventory(): Promise<Product[]> {
+  const products: Product[] = [];
+
+  const file = await open(path.join(__dirname, "../inventory.txt"));
+
+  for await (const line of file.readLines()) {
+    products.push(parseProduct(line));
+  }
+
+  return products;
 }
 
 const productRegex = /(\D+): (\d+), \$(\d+\.\d+), \$(\d+\.\d+), (\D+)$/;

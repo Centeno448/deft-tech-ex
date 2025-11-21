@@ -1,4 +1,4 @@
-import { parseProduct } from "./inventory";
+import { parseProduct, initInventory } from "./inventory";
 import { TaxStatus } from "./product";
 
 describe("parseProduct", () => {
@@ -22,5 +22,16 @@ describe("parseProduct", () => {
     expect(product.getRegularPrice()).toEqual(3.75);
     expect(product.getMemberPrice()).toEqual(3.5);
     expect(product.getTaxStatus()).toEqual(TaxStatus.TaxExempt);
+  });
+});
+
+describe("initInventory", () => {
+  test("testing", async () => {
+    const products = await initInventory();
+
+    expect(products.length).toEqual(3);
+    expect(products[0].getName()).toEqual("Milk");
+    expect(products[1].getName()).toEqual("Red Bull");
+    expect(products[2].getName()).toEqual("Flour");
   });
 });
