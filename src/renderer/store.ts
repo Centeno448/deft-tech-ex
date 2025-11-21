@@ -36,7 +36,15 @@ const purchaseSlice = createSlice({
       state.customerType = action.payload;
     },
     addPurchaseProduct: (state, action: PayloadAction<Product>) => {
-      state.cart.push(action.payload);
+      const cartIndex = state.cart.findIndex(
+        (p) => p.name === action.payload.name
+      );
+
+      if (cartIndex !== -1) {
+        state.cart[cartIndex].amount = action.payload.amount;
+      } else {
+        state.cart.push(action.payload);
+      }
     },
     removePurchaseProduct: (state, action: PayloadAction<Product>) => {
       state.cart = state.cart.filter((p) => p.name !== action.payload.name);

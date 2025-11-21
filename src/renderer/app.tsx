@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import QMart from "./qmart";
+import QMart from "./QMart";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Membership from "./Membership";
 import Cart from "./Cart";

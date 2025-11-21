@@ -32,7 +32,10 @@ const createWindow = async (): Promise<void> => {
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  if (isDev) {
+    mainWindow.webContents.openDevTools();
+  }
+
   mainWindow.maximize();
 };
 
