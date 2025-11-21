@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Product } from "../common/product";
+import { Link } from "react-router";
 import "./qmart.scss";
 
 export default function QMart() {
@@ -17,7 +18,9 @@ export default function QMart() {
     <div className="container">
       <h1>Quick Mart</h1>
 
-      <button>New Purchase</button>
+      <Link to="/purchase">
+        <button>New Purchase</button>
+      </Link>
     </div>
   );
 }
