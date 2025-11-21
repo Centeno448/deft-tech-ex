@@ -4,12 +4,14 @@ import ProductCard from "./ProductCard";
 import CartRow from "./CartRow";
 import "./Cart.scss";
 import { clearPurchaseCart } from "./store";
+import { CustomerType } from "../common/customerType";
 
 export default function Membership() {
   const dispatch = useAppDispatch();
 
   const products = useAppSelector((s) => s.inventory.value);
   const productsInCart = useAppSelector((s) => s.purchase.cart);
+  const memberType = useAppSelector((s) => s.purchase.customerType);
 
   const handleClearCart = () => {
     dispatch(clearPurchaseCart());
@@ -52,6 +54,14 @@ export default function Membership() {
               <CartRow key={p.name} product={p} />
             ))}
           </tbody>
+          subtotal: $
+          {productsInCart
+            .map((p) =>
+              memberType === CustomerType.Member
+                ? p.memberPrice * p.amount
+                : p.regularPrice * p.amount
+            )
+            .reduce((accum, curr) => accum + curr, 0)}
         </table>
       </div>
 
