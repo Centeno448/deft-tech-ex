@@ -74,7 +74,7 @@ ${productsString}
 ***************************
 TOTAL NUMBER OF ITEMS SOLD: ${itemsSold}
 SUB-TOTAL: $${purchase.subtotal}
-TAX (${TAX_RATE_PERCENT}%): $${purchase.subtotal}
+TAX (${TAX_RATE_PERCENT}%): $${purchase.tax}
 TOTAL: $${purchase.total}
 CASH: $${purchase.cash}
 CHANGE: ${calculateChange(purchase.total, purchase.cash)}
