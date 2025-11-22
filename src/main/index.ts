@@ -5,6 +5,7 @@ import {
   ipcMain,
   IpcMainEvent,
   session,
+  globalShortcut,
 } from "electron";
 import {
   initInventoryWrapper,
@@ -100,6 +101,18 @@ app.on("ready", async () => {
   if (isDev && reduxDevExtensionPath) {
     await session.defaultSession.loadExtension(reduxDevExtensionPath);
   }
+});
+
+// Disable manual page reloading for browser windows
+app.on("browser-window-focus", function () {
+  globalShortcut.register("CommandOrControl+R", () => {});
+  globalShortcut.register("F5", () => {});
+});
+
+// Enable it for other windows
+app.on("browser-window-blur", function () {
+  globalShortcut.unregister("CommandOrControl+R");
+  globalShortcut.unregister("F5");
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
