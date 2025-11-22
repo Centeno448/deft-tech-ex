@@ -9,6 +9,7 @@ import PurchaseLayout from "./PurchaseLayout";
 import { INDEX_ROUTE } from "./indexRoute";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import PurchaseComplete from "./PurchaseComplete";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -22,6 +23,7 @@ root.render(
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
         </Route>
+        <Route path="complete" element={<PurchaseComplete />} />
       </Routes>
     </BrowserRouter>
   </Provider>

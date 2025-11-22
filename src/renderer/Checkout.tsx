@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router";
 import CartTable from "./CartTable";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { useState, ChangeEvent } from "react";
-import { clearPurchaseCart, updateInventory } from "./store";
+import { clearPurchaseCart, payPurchase, updateInventory } from "./store";
 import { INDEX_ROUTE } from "./indexRoute";
 
 export default function Checkout() {
@@ -23,9 +23,9 @@ export default function Checkout() {
       return;
     }
 
+    dispatch(payPurchase(cash));
     dispatch(updateInventory(purchase.cart));
-    dispatch(clearPurchaseCart());
-    navigate(INDEX_ROUTE);
+    navigate("/complete");
   };
 
   return (

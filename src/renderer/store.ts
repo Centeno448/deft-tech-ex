@@ -10,6 +10,7 @@ import {
   calculateSubTotal,
   calculateTax,
   calculateSavings,
+  purchaseState,
 } from "../common/purchase";
 
 const inventoryInitialState: { products: Product[]; fileNeedsUpdate: boolean } =
@@ -45,15 +46,6 @@ const inventorySlice = createSlice({
   },
 });
 
-interface purchaseState {
-  cart: Product[];
-  customerType: CustomerType;
-  subtotal: number;
-  tax: number;
-  total: number;
-  savings: number;
-}
-
 const purhcaseInitialState: purchaseState = {
   cart: [],
   customerType: undefined,
@@ -61,6 +53,7 @@ const purhcaseInitialState: purchaseState = {
   tax: 0,
   total: 0,
   savings: 0,
+  cash: 0,
 };
 
 function recalculatePurchaseFields(state: WritableDraft<purchaseState>) {
@@ -81,6 +74,7 @@ const purchaseSlice = createSlice({
       state.subtotal = 0;
       state.tax = 0;
       state.total = 0;
+      state.cash = 0;
     },
     clearPurchaseCart: (state) => {
       state.cart = [];
@@ -106,6 +100,9 @@ const purchaseSlice = createSlice({
       state.cart = state.cart.filter((p) => p.name !== action.payload.name);
       recalculatePurchaseFields(state);
     },
+    payPurchase: (state, action: PayloadAction<number>) => {
+      state.cash = action.payload;
+    },
   },
 });
 
@@ -118,6 +115,7 @@ export const {
   setPurchaseCustomer,
   addPurchaseProduct,
   removePurchaseProduct,
+  payPurchase,
 } = purchaseSlice.actions;
 
 export const store = configureStore({

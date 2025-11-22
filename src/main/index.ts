@@ -1,5 +1,6 @@
 import { app, BrowserWindow, ipcMain, session } from "electron";
 import { initInventory, updateInventoryFile } from "./inventory";
+import { writeReceipt, viewReceipt } from "./receipt";
 
 import "dotenv/config";
 
@@ -44,6 +45,8 @@ const createWindow = async (): Promise<void> => {
 // Some APIs can only be used after this event occurs.
 app.on("ready", async () => {
   ipcMain.handle("inventory:init", initInventory);
+  ipcMain.handle("receipt:emit", writeReceipt);
+  ipcMain.on("receipt:view", viewReceipt);
   ipcMain.on("inventory:update", updateInventoryFile);
   createWindow();
   if (isDev && reduxDevExtensionPath) {

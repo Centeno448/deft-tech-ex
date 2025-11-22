@@ -1,6 +1,16 @@
 import { Product, TaxStatus } from "./product";
 import { CustomerType } from "./customerType";
 
+export interface purchaseState {
+  cart: Product[];
+  customerType: CustomerType;
+  subtotal: number;
+  tax: number;
+  total: number;
+  savings: number;
+  cash: number;
+}
+
 export const TAX_RATE_PERCENT = 6.5;
 const TAX_RATE = TAX_RATE_PERCENT / 100;
 
