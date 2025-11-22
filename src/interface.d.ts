@@ -15,6 +15,7 @@ export interface IDialog {
 export interface IReceipts {
   emitReceipt: (purchase: purchaseState) => Promise<string>;
   viewReceipt: (receiptPath: string) => Promise<void>;
+  viewTransactionHistory: () => void;
 }
 
 declare global {

@@ -12,7 +12,7 @@ import {
   loadInventoryFromTxt,
   updateInventoryFile,
 } from "./inventory";
-import { writeReceipt, viewReceipt } from "./receipt";
+import { writeReceipt, viewReceipt, viewTransactionHistory } from "./receipt";
 
 import "dotenv/config";
 
@@ -97,6 +97,7 @@ app.on("ready", async () => {
   ipcMain.on("receipt:view", viewReceipt);
   ipcMain.on("inventory:update", updateInventoryFile);
   ipcMain.on("dialog:message", showMessageDialog);
+  ipcMain.on("receipt:history", viewTransactionHistory);
   createWindow();
   if (isDev && reduxDevExtensionPath) {
     await session.defaultSession.loadExtension(reduxDevExtensionPath);

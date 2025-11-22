@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { loadInventory, updatedInventory } from "./store";
 import { Link } from "react-router";
+import "./QMart.scss";
 
 export default function QMart() {
   const dispatch = useAppDispatch();
@@ -29,17 +30,25 @@ export default function QMart() {
     await window.productInventory.loadInventoryFromFile();
   };
 
+  const handleViewTransactions = () => {
+    window.receipts.viewTransactionHistory();
+  };
+
   return (
     <div className="container">
       <h1>Quick Mart</h1>
 
-      <div className="btnContainer">
+      <div className="btnContainer mainMenu">
         <Link to="/purchase/membership">
           <button className="btn primary">New Purchase</button>
         </Link>
 
         <button className="btn secondary" onClick={handleInventoryLoad}>
           Load Inventory
+        </button>
+
+        <button className="btn secondary" onClick={handleViewTransactions}>
+          View Transactions
         </button>
       </div>
     </div>

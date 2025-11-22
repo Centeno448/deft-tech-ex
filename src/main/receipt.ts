@@ -100,3 +100,7 @@ ${productTable.toString()} ***************************
 export function viewReceipt(_: IpcMainEvent, receiptPath: string) {
   shell.openPath(receiptPath);
 }
+
+export function viewTransactionHistory(_: IpcMainEvent) {
+  shell.openPath(TRANSACTIONS_PATH);
+}

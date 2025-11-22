@@ -16,6 +16,7 @@ contextBridge.exposeInMainWorld("receipts", {
     ipcRenderer.invoke("receipt:emit", purchase),
   viewReceipt: (receiptPath: string) =>
     ipcRenderer.send("receipt:view", receiptPath),
+  viewTransactionHistory: () => ipcRenderer.send("receipt:history"),
 });
 
 contextBridge.exposeInMainWorld("dialog", {
