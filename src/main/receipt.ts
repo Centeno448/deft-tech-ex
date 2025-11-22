@@ -88,7 +88,7 @@ ${productTable.toString()} ***************************
  TAX (${TAX_RATE_PERCENT}%): $${purchase.tax}
  TOTAL: $${purchase.total}
  CASH: $${purchase.cash}
- CHANGE: ${calculateChange(purchase.total, purchase.cash)}
+ CHANGE: $${calculateChange(purchase.total, purchase.cash)}
  ***************************
  ${savingsText}`;
 
