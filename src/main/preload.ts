@@ -19,5 +19,8 @@ contextBridge.exposeInMainWorld("receipts", {
 });
 
 contextBridge.exposeInMainWorld("dialog", {
-  showDialog: (message: string) => ipcRenderer.send("dialog:show", message),
+  showDialog: (title: string, message: string) =>
+    ipcRenderer.send("dialog:message", title, message),
+  confirmDialog: (title: string, message: string) =>
+    ipcRenderer.invoke("dialog:confirm", title, message),
 });

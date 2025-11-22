@@ -18,7 +18,10 @@ export default function Checkout() {
 
   const handlePayment = () => {
     if (cash < purchase.total) {
-      window.dialog.showDialog(`Customer must pay $${purchase.total}`);
+      window.dialog.showDialog(
+        "Invalid cash amount",
+        `Customer must pay $${purchase.total}`
+      );
       return;
     }
 

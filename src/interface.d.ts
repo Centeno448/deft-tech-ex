@@ -8,7 +8,8 @@ export interface IProductInventory {
 }
 
 export interface IDialog {
-  showDialog: (message: string) => Promise<void>;
+  showDialog: (title: string, message: string) => Promise<void>;
+  confirmDialog: (title: string, message: string) => Promise<bool>;
 }
 
 export interface IReceipts {

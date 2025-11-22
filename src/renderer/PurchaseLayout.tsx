@@ -8,9 +8,13 @@ export default function PurchaseLayout() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handlePurchaseCancel = () => {
-    // TODO: MIGRATE TO ELECTRON DIALOG
-    if (confirm("This will clear all purchase data, are you sure?")) {
+  const handlePurchaseCancel = async () => {
+    const confirmation = await window.dialog.confirmDialog(
+      "Purchase Cancelation",
+      "This will clear all purchase data, are you sure?"
+    );
+
+    if (confirmation) {
       dispatch(cancelPurchase());
       navigate(INDEX_ROUTE);
     }

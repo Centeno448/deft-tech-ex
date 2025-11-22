@@ -51,14 +51,38 @@ const createWindow = async (): Promise<void> => {
   mainWindow.maximize();
 };
 
-async function showMessageDialog(event: IpcMainEvent, message: string) {
+async function showMessageDialog(
+  _: IpcMainEvent,
+  title: string,
+  message: string
+) {
   const window = BrowserWindow.getAllWindows()[0];
 
   if (!window) {
     return;
   }
 
-  await dialog.showMessageBox(window, { message });
+  await dialog.showMessageBox(window, { title, message });
+}
+
+async function showConfirmationDialog(
+  _: IpcMainEvent,
+  title: string,
+  message: string
+): Promise<boolean> {
+  const window = BrowserWindow.getAllWindows()[0];
+
+  if (!window) {
+    return;
+  }
+
+  const { response } = await dialog.showMessageBox(window, {
+    title,
+    message,
+    buttons: ["Ok", "Cancel"],
+  });
+
+  return response === 0;
 }
 
 // This method will be called when Electron has finished
@@ -68,9 +92,10 @@ app.on("ready", async () => {
   ipcMain.handle("inventory:init", initInventoryWrapper);
   ipcMain.handle("inventory:load", loadInventoryFromTxt);
   ipcMain.handle("receipt:emit", writeReceipt);
+  ipcMain.handle("dialog:confirm", showConfirmationDialog);
   ipcMain.on("receipt:view", viewReceipt);
   ipcMain.on("inventory:update", updateInventoryFile);
-  ipcMain.on("dialog:show", showMessageDialog);
+  ipcMain.on("dialog:message", showMessageDialog);
   createWindow();
   if (isDev && reduxDevExtensionPath) {
     await session.defaultSession.loadExtension(reduxDevExtensionPath);
