@@ -60,7 +60,7 @@ function recalculatePurchaseFields(state: WritableDraft<purchaseState>) {
   state.subtotal = calculateSubTotal(state.customerType, state.cart);
   state.tax = calculateTax(state.customerType, state.cart);
   state.savings = calculateSavings(state.customerType, state.cart);
-  state.total = state.subtotal + state.tax;
+  state.total = +(state.subtotal + state.tax).toFixed(2);
 }
 
 const purchaseSlice = createSlice({

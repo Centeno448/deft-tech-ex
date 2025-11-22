@@ -17,3 +17,7 @@ contextBridge.exposeInMainWorld("receipts", {
   viewReceipt: (receiptPath: string) =>
     ipcRenderer.send("receipt:view", receiptPath),
 });
+
+contextBridge.exposeInMainWorld("dialog", {
+  showDialog: (message: string) => ipcRenderer.send("dialog:show", message),
+});

@@ -18,8 +18,7 @@ export default function Checkout() {
 
   const handlePayment = () => {
     if (cash < purchase.total) {
-      // TODO: MIGRATE TO ELECTRON DIALOG
-      alert(`Customer must pay $${purchase.total}`);
+      window.dialog.showDialog(`Customer must pay $${purchase.total}`);
       return;
     }
 

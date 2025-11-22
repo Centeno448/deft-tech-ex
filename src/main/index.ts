@@ -1,4 +1,11 @@
-import { app, BrowserWindow, ipcMain, session } from "electron";
+import {
+  app,
+  BrowserWindow,
+  dialog,
+  ipcMain,
+  IpcMainEvent,
+  session,
+} from "electron";
 import {
   initInventoryWrapper,
   loadInventoryFromTxt,
@@ -44,6 +51,16 @@ const createWindow = async (): Promise<void> => {
   mainWindow.maximize();
 };
 
+async function showMessageDialog(event: IpcMainEvent, message: string) {
+  const window = BrowserWindow.getAllWindows()[0];
+
+  if (!window) {
+    return;
+  }
+
+  await dialog.showMessageBox(window, { message });
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -53,6 +70,7 @@ app.on("ready", async () => {
   ipcMain.handle("receipt:emit", writeReceipt);
   ipcMain.on("receipt:view", viewReceipt);
   ipcMain.on("inventory:update", updateInventoryFile);
+  ipcMain.on("dialog:show", showMessageDialog);
   createWindow();
   if (isDev && reduxDevExtensionPath) {
     await session.defaultSession.loadExtension(reduxDevExtensionPath);

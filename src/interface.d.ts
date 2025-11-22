@@ -7,6 +7,10 @@ export interface IProductInventory {
   loadInventoryFromFile: () => Promise<void>;
 }
 
+export interface IDialog {
+  showDialog: (message: string) => Promise<void>;
+}
+
 export interface IReceipts {
   emitReceipt: (purchase: purchaseState) => Promise<string>;
   viewReceipt: (receiptPath: string) => Promise<void>;
@@ -16,5 +20,6 @@ declare global {
   interface Window {
     productInventory: IProductInventory;
     receipts: IReceipts;
+    dialog: IDialog;
   }
 }
