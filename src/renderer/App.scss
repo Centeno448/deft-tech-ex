@@ -1,12 +1,13 @@
 .btn {
   border-radius: 5px;
   border: none;
-  font-size: 24px;
+  font-weight: bold;
   padding: 10px;
+  color: black;
 
   &.primary {
     background: #8FABD4;
-    color: black;
+    font-size: 24px;
 
     &:hover {
       background: #a5b8d4;
@@ -14,15 +15,46 @@
   }
 
   &.secondary {
+    font-size: 24px;
     background: #4A70A9;
-    color: black;
 
     &:hover {
-      background: rgb(181, 192, 209);
+      background: #5477ac;
+    }
+  }
+
+  &.danger {
+    background: #97445a;
+
+    &:hover {
+      background: #a05e70;
     }
   }
 }
 
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 30%;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: auto;
+  gap: 2rem;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
 h1 {
   color: black;

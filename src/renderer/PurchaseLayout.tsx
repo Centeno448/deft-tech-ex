@@ -1,8 +1,9 @@
-import { Outlet, Link } from "react-router";
+import { Outlet } from "react-router";
 import { INDEX_ROUTE } from "./indexRoute";
 import { useNavigate } from "react-router";
 import { useAppDispatch } from "./hooks";
 import { cancelPurchase } from "./store";
+import "./PurchaseLayout.scss";
 
 export default function PurchaseLayout() {
   const dispatch = useAppDispatch();
@@ -22,11 +23,15 @@ export default function PurchaseLayout() {
 
   return (
     <>
-      <h2>Purchase</h2>
+      <div className="container">
+        <h1>Purchase</h1>
 
-      <button onClick={handlePurchaseCancel}>Cancel purchase</button>
+        <button className="btn danger cancelBtn" onClick={handlePurchaseCancel}>
+          Cancel purchase
+        </button>
 
-      <Outlet />
+        <Outlet />
+      </div>
     </>
   );
 }

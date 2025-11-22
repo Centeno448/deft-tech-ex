@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { loadInventory, updatedInventory } from "./store";
 import { Link } from "react-router";
-import "./QMart.scss";
 
 export default function QMart() {
   const dispatch = useAppDispatch();

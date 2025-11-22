@@ -2,6 +2,7 @@ import { useAppDispatch } from "./hooks";
 import { setPurchaseCustomer } from "./store";
 import { CustomerType } from "../common/customerType";
 import { useNavigate } from "react-router";
+import "./Membership.scss";
 
 export default function Membership() {
   const dispatch = useAppDispatch();
@@ -17,11 +18,18 @@ export default function Membership() {
 
   return (
     <>
-      <p>Select customer type:</p>
+      <div className="options">
+        <p>Select customer type:</p>
+        <div className="btnContainer">
+          <button className="btn primary" onClick={handleRewardsMember}>
+            Rewards Member
+          </button>
 
-      <button onClick={handleRewardsMember}>Rewards Member</button>
-
-      <button onClick={handleRegularCustomer}>Regular Customer</button>
+          <button className="btn secondary" onClick={handleRegularCustomer}>
+            Regular Customer
+          </button>
+        </div>
+      </div>
     </>
   );
 }
