@@ -5,9 +5,10 @@ import { removePurchaseProduct } from "./store";
 
 export interface CartRowProps {
   product: Product;
+  summaryMode: boolean;
 }
 
-export default function CartRow({ product }: CartRowProps) {
+export default function CartRow({ product, summaryMode }: CartRowProps) {
   const dispatch = useAppDispatch();
   const customerType = useAppSelector((s) => s.purchase.customerType);
   const price =
@@ -26,9 +27,11 @@ export default function CartRow({ product }: CartRowProps) {
         <td>{product.amount}</td>
         <td>${price}</td>
         <td>${product.amount * price}</td>
-        <td>
-          <button onClick={handleRemoveFromCart}>Remove From Cart</button>
-        </td>
+        {!summaryMode && (
+          <td>
+            <button onClick={handleRemoveFromCart}>Remove From Cart</button>
+          </td>
+        )}
       </tr>
     </>
   );

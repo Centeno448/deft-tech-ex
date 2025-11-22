@@ -1,23 +1,25 @@
 import { Product } from "../common/product";
 import { clearPurchaseCart } from "./store";
 import { useAppDispatch, useAppSelector } from "./hooks";
-import { CustomerType } from "../common/customerType";
 import CartRow from "./CartRow";
+import { TAX_RATE_PERCENT } from "../common/purchase";
 
 export interface CartTableProps {
   products: Product[];
+  summaryMode: boolean;
 }
 
-export default function CartTable({ products }: CartTableProps) {
+export default function CartTable({ products, summaryMode }: CartTableProps) {
   const dispatch = useAppDispatch();
-  const memberType = useAppSelector((s) => s.purchase.customerType);
+  const purchase = useAppSelector((s) => s.purchase);
 
   const handleClearCart = () => {
     dispatch(clearPurchaseCart());
   };
+
   return (
     <table>
-      <button onClick={handleClearCart}>Clear Cart</button>
+      {!summaryMode && <button onClick={handleClearCart}>Clear Cart</button>}
       <thead>
         <tr>
           <th>Name</th>
@@ -29,17 +31,14 @@ export default function CartTable({ products }: CartTableProps) {
       </thead>
       <tbody>
         {products.map((p) => (
-          <CartRow key={p.name} product={p} />
+          <CartRow summaryMode={summaryMode} key={p.name} product={p} />
         ))}
       </tbody>
-      subtotal: $
-      {products
-        .map((p) =>
-          memberType === CustomerType.Member
-            ? p.memberPrice * p.amount
-            : p.regularPrice * p.amount
-        )
-        .reduce((accum, curr) => accum + curr, 0)}
+      <p>Sub-Total: ${purchase.subtotal}</p>
+      <p>
+        Tax ({TAX_RATE_PERCENT}%): ${purchase.tax}
+      </p>
+      <p>Total: ${purchase.total}</p>
     </table>
   );
 }

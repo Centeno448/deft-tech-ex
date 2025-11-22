@@ -26,10 +26,10 @@ describe("parseProduct", () => {
 });
 
 describe("initInventory", () => {
-  test("testing", async () => {
+  test("loads inventory from file", async () => {
     const products = await initInventory();
 
-    expect(products.length).toEqual(3);
+    expect(products.length).toEqual(4);
     expect(products[0].name).toEqual("Milk");
     expect(products[1].name).toEqual("Red Bull");
     expect(products[2].name).toEqual("Flour");

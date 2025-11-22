@@ -15,11 +15,11 @@ export default function Membership() {
       <div className="tableContainers">
         <ProductTable products={productsInInventory} />
 
-        <CartTable products={productsInCart} />
+        <CartTable summaryMode={false} products={productsInCart} />
       </div>
 
-      <Link to="/purchase/Checkout">
-        <button>Checkout</button>
+      <Link to="/purchase/checkout">
+        <button disabled={!productsInCart.length}>Checkout</button>
       </Link>
     </>
   );

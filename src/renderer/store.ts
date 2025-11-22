@@ -1,6 +1,16 @@
-import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  configureStore,
+  PayloadAction,
+  WritableDraft,
+} from "@reduxjs/toolkit";
 import { Product } from "../common/product";
 import { CustomerType } from "../common/customerType";
+import {
+  calculateSubTotal,
+  calculateTax,
+  calculateSavings,
+} from "../common/purchase";
 
 const inventoryInitialState: { value: Product[] } = {
   value: [],
@@ -10,16 +20,49 @@ const inventorySlice = createSlice({
   name: "inventory",
   initialState: inventoryInitialState,
   reducers: {
-    updateInventory: (state, action: PayloadAction<Product[]>) => {
+    loadInventory: (state, action: PayloadAction<Product[]>) => {
       state.value = action.payload;
+    },
+    updateInventory: (state, action: PayloadAction<Product[]>) => {
+      for (const product of action.payload) {
+        const inventoryIndex = state.value.findIndex(
+          (p) => p.name === product.name
+        );
+
+        if (inventoryIndex < 0) {
+          return;
+        }
+
+        state.value[inventoryIndex].amount -= product.amount;
+      }
     },
   },
 });
 
-const purhcaseInitialState: { cart: Product[]; customerType: CustomerType } = {
+interface purchaseState {
+  cart: Product[];
+  customerType: CustomerType;
+  subtotal: number;
+  tax: number;
+  total: number;
+  savings: number;
+}
+
+const purhcaseInitialState: purchaseState = {
   cart: [],
   customerType: undefined,
+  subtotal: 0,
+  tax: 0,
+  total: 0,
+  savings: 0,
 };
+
+function recalculatePurchaseFields(state: WritableDraft<purchaseState>) {
+  state.subtotal = calculateSubTotal(state.customerType, state.cart);
+  state.tax = calculateTax(state.customerType, state.cart);
+  state.savings = calculateSavings(state.customerType, state.cart);
+  state.total = state.subtotal + state.tax;
+}
 
 const purchaseSlice = createSlice({
   name: "purchase",
@@ -28,9 +71,14 @@ const purchaseSlice = createSlice({
     cancelPurchase: (state) => {
       state.cart = [];
       state.customerType = undefined;
+      state.savings = 0;
+      state.subtotal = 0;
+      state.tax = 0;
+      state.total = 0;
     },
     clearPurchaseCart: (state) => {
       state.cart = [];
+      recalculatePurchaseFields(state);
     },
     setPurchaseCustomer: (state, action: PayloadAction<CustomerType>) => {
       state.customerType = action.payload;
@@ -45,14 +93,17 @@ const purchaseSlice = createSlice({
       } else {
         state.cart.push(action.payload);
       }
+
+      recalculatePurchaseFields(state);
     },
     removePurchaseProduct: (state, action: PayloadAction<Product>) => {
       state.cart = state.cart.filter((p) => p.name !== action.payload.name);
+      recalculatePurchaseFields(state);
     },
   },
 });
 
-export const { updateInventory } = inventorySlice.actions;
+export const { loadInventory, updateInventory } = inventorySlice.actions;
 
 export const {
   cancelPurchase,

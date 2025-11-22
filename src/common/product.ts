@@ -10,7 +10,3 @@ export interface Product {
   memberPrice: number;
   taxStatus: TaxStatus;
 }
-
-export function calculateSavings(product: Product): number {
-  return +(product.regularPrice - product.memberPrice).toFixed(2);
-}

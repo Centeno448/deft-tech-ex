@@ -9,6 +9,7 @@ export default function PurchaseLayout() {
   const navigate = useNavigate();
 
   const handlePurchaseCancel = () => {
+    // TODO: MIGRATE TO ELECTRON DIALOG
     if (confirm("This will clear all purchase data, are you sure?")) {
       dispatch(cancelPurchase());
       navigate(INDEX_ROUTE);

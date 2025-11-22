@@ -35,7 +35,12 @@ export default function ProductRow({ product }: ProductRowProps) {
   };
 
   const handlePurchaseAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPurchaseAmount(Number(event.target.value));
+    let amount = Number(event.target.value);
+    if (amount > product.amount) {
+      amount = product.amount;
+      event.target.value = `${amount}`;
+    }
+    setPurchaseAmount(amount);
   };
 
   return (
@@ -55,7 +60,7 @@ export default function ProductRow({ product }: ProductRowProps) {
             min={1}
             max={product.amount}
             disabled={shouldDisableInteraction}
-            value={purchaseAmount}
+            defaultValue={purchaseAmount}
             onChange={handlePurchaseAmountChange}
           />
           <button disabled={shouldDisableInteraction} onClick={handleAddToCart}>

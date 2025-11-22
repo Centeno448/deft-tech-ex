@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks";
-import { updateInventory } from "./store";
+import { loadInventory } from "./store";
 import { Link } from "react-router";
 import "./QMart.scss";
 
@@ -12,7 +12,7 @@ export default function QMart() {
     const initInv = async () => {
       if (!storeProducts.length) {
         const products = await window.productInventory.initInventory();
-        dispatch(updateInventory(products));
+        dispatch(loadInventory(products));
       }
     };
     initInv();
