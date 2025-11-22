@@ -5,7 +5,7 @@ import CartTable from "./CartTable";
 import ProductTable from "./ProductTable";
 
 export default function Membership() {
-  const productsInInventory = useAppSelector((s) => s.inventory.value);
+  const productsInInventory = useAppSelector((s) => s.inventory.products);
   const productsInCart = useAppSelector((s) => s.purchase.cart);
 
   return (

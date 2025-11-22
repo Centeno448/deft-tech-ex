@@ -1,21 +1,29 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks";
-import { loadInventory } from "./store";
+import { loadInventory, updatedInventory } from "./store";
 import { Link } from "react-router";
 import "./QMart.scss";
 
 export default function QMart() {
   const dispatch = useAppDispatch();
-  const storeProducts = useAppSelector((s) => s.inventory.value);
+  const inventory = useAppSelector((s) => s.inventory);
 
   useEffect(() => {
-    const initInv = async () => {
-      if (!storeProducts.length) {
+    const syncInv = async () => {
+      if (!inventory.products.length) {
+        // No inventory in memory, load from file
         const products = await window.productInventory.initInventory();
         dispatch(loadInventory(products));
       }
+
+      if (inventory.fileNeedsUpdate) {
+        // recent changes require file update
+        await window.productInventory.updateInventory(inventory.products);
+        dispatch(updatedInventory());
+      }
     };
-    initInv();
+
+    syncInv();
   }, []);
 
   return (

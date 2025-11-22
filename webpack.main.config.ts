@@ -2,7 +2,6 @@ import type { Configuration } from "webpack";
 
 import { rules } from "./webpack.rules";
 import { plugins } from "./webpack.plugins";
-import CopyPlugin from "copy-webpack-plugin";
 
 export const mainConfig: Configuration = {
   /**
@@ -14,11 +13,7 @@ export const mainConfig: Configuration = {
   module: {
     rules,
   },
-  plugins: [
-    new CopyPlugin({
-      patterns: [{ from: "./src/inventory.txt", to: "../inventory.txt" }],
-    }),
-  ],
+  plugins,
   resolve: {
     extensions: [".js", ".ts", ".jsx", ".tsx", ".css", ".scss", ".json"],
   },

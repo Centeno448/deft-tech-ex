@@ -1,5 +1,5 @@
 import { app, BrowserWindow, ipcMain, session } from "electron";
-import { initInventory } from "./inventory";
+import { initInventory, updateInventoryFile } from "./inventory";
 
 import "dotenv/config";
 
@@ -44,6 +44,7 @@ const createWindow = async (): Promise<void> => {
 // Some APIs can only be used after this event occurs.
 app.on("ready", async () => {
   ipcMain.handle("inventory:init", initInventory);
+  ipcMain.on("inventory:update", updateInventoryFile);
   createWindow();
   if (isDev && reduxDevExtensionPath) {
     await session.defaultSession.loadExtension(reduxDevExtensionPath);

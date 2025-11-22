@@ -12,20 +12,22 @@ import {
   calculateSavings,
 } from "../common/purchase";
 
-const inventoryInitialState: { value: Product[] } = {
-  value: [],
-};
+const inventoryInitialState: { products: Product[]; fileNeedsUpdate: boolean } =
+  {
+    products: [],
+    fileNeedsUpdate: false,
+  };
 
 const inventorySlice = createSlice({
   name: "inventory",
   initialState: inventoryInitialState,
   reducers: {
     loadInventory: (state, action: PayloadAction<Product[]>) => {
-      state.value = action.payload;
+      state.products = action.payload;
     },
     updateInventory: (state, action: PayloadAction<Product[]>) => {
       for (const product of action.payload) {
-        const inventoryIndex = state.value.findIndex(
+        const inventoryIndex = state.products.findIndex(
           (p) => p.name === product.name
         );
 
@@ -33,8 +35,12 @@ const inventorySlice = createSlice({
           return;
         }
 
-        state.value[inventoryIndex].amount -= product.amount;
+        state.products[inventoryIndex].amount -= product.amount;
       }
+      state.fileNeedsUpdate = true;
+    },
+    updatedInventory: (state) => {
+      state.fileNeedsUpdate = false;
     },
   },
 });
@@ -103,7 +109,8 @@ const purchaseSlice = createSlice({
   },
 });
 
-export const { loadInventory, updateInventory } = inventorySlice.actions;
+export const { loadInventory, updateInventory, updatedInventory } =
+  inventorySlice.actions;
 
 export const {
   cancelPurchase,
