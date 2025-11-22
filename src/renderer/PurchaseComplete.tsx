@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "./hooks";
 import { clearPurchaseCart } from "./store";
 import { Link } from "react-router";
 import { INDEX_ROUTE } from "./indexRoute";
+import "./PurchaseComplete.scss";
 
 export default function PurchaseComplete() {
   const [isReady, setIsReady] = useState(false);
@@ -27,15 +28,23 @@ export default function PurchaseComplete() {
 
   return (
     <>
-      <p>PURCHASE COMPLETE</p>
+      <div className="container">
+        <h1>PURCHASE COMPLETE</h1>
 
-      <button onClick={handleViewReceipt} disabled={!isReady}>
-        View Receipt
-      </button>
+        <div className="completeBtnContainer">
+          <button
+            className="btn secondary"
+            onClick={handleViewReceipt}
+            disabled={!isReady}
+          >
+            View Receipt
+          </button>
 
-      <Link to={INDEX_ROUTE}>
-        <button>Back to home</button>
-      </Link>
+          <Link to={INDEX_ROUTE}>
+            <button className="btn primary">Back to Home</button>
+          </Link>
+        </div>
+      </div>
     </>
   );
 }

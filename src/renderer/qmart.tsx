@@ -38,7 +38,7 @@ export default function QMart() {
           <button className="btn primary">New Purchase</button>
         </Link>
 
-        <button className="btn primary" onClick={handleInventoryLoad}>
+        <button className="btn secondary" onClick={handleInventoryLoad}>
           Load Inventory
         </button>
       </div>
