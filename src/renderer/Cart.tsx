@@ -1,11 +1,11 @@
 import { Link } from "react-router";
 import { useAppSelector } from "./hooks";
-import ProductCard from "./ProductCard";
 import "./Cart.scss";
 import CartTable from "./CartTable";
+import ProductTable from "./ProductTable";
 
 export default function Membership() {
-  const products = useAppSelector((s) => s.inventory.value);
+  const productsInInventory = useAppSelector((s) => s.inventory.value);
   const productsInCart = useAppSelector((s) => s.purchase.cart);
 
   return (
@@ -13,21 +13,7 @@ export default function Membership() {
       <p>Add products to the cart</p>
 
       <div className="tableContainers">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Available</th>
-              <th>Price</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((p) => (
-              <ProductCard key={p.name} product={p} />
-            ))}
-          </tbody>
-        </table>
+        <ProductTable products={productsInInventory} />
 
         <CartTable products={productsInCart} />
       </div>

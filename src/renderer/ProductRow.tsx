@@ -4,11 +4,11 @@ import { Product } from "../common/product";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { addPurchaseProduct } from "./store";
 
-export interface ProductCardProps {
+export interface ProductRowProps {
   product: Product;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductRow({ product }: ProductRowProps) {
   const customerType = useAppSelector((s) => s.purchase.customerType);
   const [purchaseAmount, setPurchaseAmount] = useState(0);
   const dispatch = useAppDispatch();
