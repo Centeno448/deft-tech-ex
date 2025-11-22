@@ -11,19 +11,19 @@ import {
 } from "../common/purchase";
 import { CustomerType } from "../common/customerType";
 
-const USER_DATA_PATH = app.getPath("userData");
+const USER_DATA_PATH = app ? app.getPath("userData") : "";
 const TRANSACTIONS_PATH = path.join(USER_DATA_PATH, "Transactions");
 
 const transactionRegex = /transaction_(\d+)_\d+/;
 
-async function getLastTransactionNumber(
-  transactionPath: string
+export async function getLastTransactionNumber(
+  transactionDir: string
 ): Promise<number> {
-  if (!existsSync(transactionPath)) {
-    mkdirSync(transactionPath);
+  if (!existsSync(transactionDir)) {
+    mkdirSync(transactionDir);
   }
 
-  const dir = await opendir(transactionPath);
+  const dir = await opendir(transactionDir);
 
   let lastNum = 0;
 
