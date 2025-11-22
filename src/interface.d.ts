@@ -4,6 +4,7 @@ import { purchaseState } from "./common/purchase";
 export interface IProductInventory {
   initInventory: () => Promise<Product[]>;
   updateInventory: (products: Product[]) => Promise<void>;
+  loadInventoryFromFile: () => Promise<void>;
 }
 
 export interface IReceipts {

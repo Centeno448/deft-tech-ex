@@ -1,5 +1,9 @@
 import { app, BrowserWindow, ipcMain, session } from "electron";
-import { initInventory, updateInventoryFile } from "./inventory";
+import {
+  initInventoryWrapper,
+  loadInventoryFromTxt,
+  updateInventoryFile,
+} from "./inventory";
 import { writeReceipt, viewReceipt } from "./receipt";
 
 import "dotenv/config";
@@ -44,7 +48,8 @@ const createWindow = async (): Promise<void> => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", async () => {
-  ipcMain.handle("inventory:init", initInventory);
+  ipcMain.handle("inventory:init", initInventoryWrapper);
+  ipcMain.handle("inventory:load", loadInventoryFromTxt);
   ipcMain.handle("receipt:emit", writeReceipt);
   ipcMain.on("receipt:view", viewReceipt);
   ipcMain.on("inventory:update", updateInventoryFile);

@@ -1,5 +1,7 @@
-import { parseProduct, initInventory } from "./inventory";
-import { TaxStatus } from "../common/product";
+import { parseProduct, initInventory, writeInventoryFile } from "./inventory";
+import { Product, TaxStatus } from "../common/product";
+import path from "path";
+import { rm } from "fs/promises";
 
 describe("parseProduct", () => {
   test("parses correctly with taxable", () => {
@@ -27,11 +29,45 @@ describe("parseProduct", () => {
 
 describe("initInventory", () => {
   test("loads inventory from file", async () => {
-    const products = await initInventory();
+    const products = await initInventory(
+      path.join(__dirname, "../../tests/fixtures/inventory.txt")
+    );
 
     expect(products.length).toEqual(4);
     expect(products[0].name).toEqual("Milk");
     expect(products[1].name).toEqual("Red Bull");
     expect(products[2].name).toEqual("Flour");
+    expect(products[3].name).toEqual("Cookies");
+  });
+});
+
+describe("writeInventoryFile", () => {
+  const tempFile = path.join(
+    __dirname,
+    "../../tests/fixtures/inventory_updateInventoryFile.txt"
+  );
+
+  afterAll(async () => {
+    await rm(tempFile);
+  });
+
+  test("updates the inventory file", async () => {
+    await initInventory(tempFile);
+
+    const updates: Product[] = [
+      {
+        name: "new",
+        amount: 1,
+        memberPrice: 1,
+        regularPrice: 2,
+        taxStatus: TaxStatus.Taxable,
+      },
+    ];
+
+    await writeInventoryFile(tempFile, updates);
+    const products = await initInventory(tempFile);
+
+    expect(products.length).toBe(1);
+    expect(products[0].name).toEqual("new");
   });
 });

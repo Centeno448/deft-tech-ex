@@ -26,6 +26,10 @@ export default function QMart() {
     syncInv();
   }, []);
 
+  const handleInventoryLoad = async () => {
+    await window.productInventory.loadInventoryFromFile();
+  };
+
   return (
     <div className="container">
       <h1>Quick Mart</h1>
@@ -33,6 +37,8 @@ export default function QMart() {
       <Link to="/purchase/membership">
         <button>New Purchase</button>
       </Link>
+
+      <button onClick={handleInventoryLoad}>Load inventory from txt</button>
     </div>
   );
 }

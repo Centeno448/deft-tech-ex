@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld("productInventory", {
   initInventory: () => ipcRenderer.invoke("inventory:init"),
   updateInventory: (products: Product[]) =>
     ipcRenderer.send("inventory:update", products),
+  loadInventoryFromFile: () => ipcRenderer.invoke("inventory:load"),
 });
 
 contextBridge.exposeInMainWorld("receipts", {
