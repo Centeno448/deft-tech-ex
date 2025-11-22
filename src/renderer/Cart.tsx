@@ -19,7 +19,9 @@ export default function Membership() {
       </div>
 
       <Link to="/purchase/checkout">
-        <button disabled={!productsInCart.length}>Checkout</button>
+        <button className="btn primary" disabled={!productsInCart.length}>
+          Checkout
+        </button>
       </Link>
     </>
   );

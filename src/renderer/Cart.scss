@@ -1,6 +1,10 @@
 .tableContainers {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: start;
   gap: 5em;
+}
+
+tr {
+  text-align: left;
 }

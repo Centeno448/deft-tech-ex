@@ -1,5 +1,6 @@
 import { Product } from "../common/product";
 import ProductRow from "./ProductRow";
+import "./ProductTable.scss";
 
 export interface ProductTableProps {
   products: Product[];
@@ -7,7 +8,7 @@ export interface ProductTableProps {
 
 export default function ProductTable({ products }: ProductTableProps) {
   return (
-    <table>
+    <table className="productTable">
       <thead>
         <tr>
           <th>Name</th>

@@ -12,6 +12,10 @@
     &:hover {
       background: #a5b8d4;
     }
+
+    &:disabled {
+      background: #b4b8be;
+    }
   }
 
   &.secondary {
@@ -20,6 +24,10 @@
 
     &:hover {
       background: #5477ac;
+    }
+
+    &:disabled {
+      background: #7a8eaa;
     }
   }
 
@@ -30,6 +38,28 @@
       background: #a05e70;
     }
   }
+
+  &.warn {
+    background: #FFFACC;
+
+    &:hover {
+      background: #fffdeb;
+    }
+  }
+
+  &.success {
+    background: #9BC53D;
+
+    &:hover {
+      background: #a9ca61;
+    }
+
+    &:disabled {
+      background-color: #b2b8a5;
+    }
+  }
+
+
 }
 
 .container {

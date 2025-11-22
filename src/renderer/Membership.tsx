@@ -19,7 +19,7 @@ export default function Membership() {
   return (
     <>
       <div className="options">
-        <p>Select customer type:</p>
+        <p className="label">Select customer type:</p>
         <div className="btnContainer">
           <button className="btn primary" onClick={handleRewardsMember}>
             Rewards Member

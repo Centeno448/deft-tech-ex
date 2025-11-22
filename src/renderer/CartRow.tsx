@@ -2,6 +2,7 @@ import { CustomerType } from "../common/customerType";
 import { Product } from "../common/product";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { removePurchaseProduct } from "./store";
+import "./CartRow.scss";
 
 export interface CartRowProps {
   product: Product;
@@ -29,7 +30,12 @@ export default function CartRow({ product, summaryMode }: CartRowProps) {
         <td>${product.amount * price}</td>
         {!summaryMode && (
           <td>
-            <button onClick={handleRemoveFromCart}>Remove From Cart</button>
+            <button
+              className="btn danger removeCartBtn"
+              onClick={handleRemoveFromCart}
+            >
+              Remove
+            </button>
           </td>
         )}
       </tr>

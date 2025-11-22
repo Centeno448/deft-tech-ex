@@ -1,0 +1,18 @@
+.cartInputContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.cartInput {
+  width: 60px;
+  border-radius: 5px;
+  border: none;
+  height: 25px;
+  padding: 5px;
+  text-align: center;
+}
+
+.cartBtn {
+  padding: 5px;
+}

@@ -3,6 +3,7 @@ import { CustomerType } from "../common/customerType";
 import { Product } from "../common/product";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { addPurchaseProduct } from "./store";
+import "./ProductRow.scss";
 
 export interface ProductRowProps {
   product: Product;
@@ -55,17 +56,24 @@ export default function ProductRow({ product }: ProductRowProps) {
             : product.regularPrice}
         </td>
         <td>
-          <input
-            type="number"
-            min={1}
-            max={product.amount}
-            disabled={shouldDisableInteraction}
-            defaultValue={purchaseAmount}
-            onChange={handlePurchaseAmountChange}
-          />
-          <button disabled={shouldDisableInteraction} onClick={handleAddToCart}>
-            Add to cart
-          </button>
+          <div className="cartInputContainer">
+            <input
+              className="cartInput"
+              type="number"
+              min={1}
+              max={product.amount}
+              disabled={shouldDisableInteraction}
+              defaultValue={purchaseAmount}
+              onChange={handlePurchaseAmountChange}
+            />
+            <button
+              className="btn success cartBtn"
+              disabled={shouldDisableInteraction}
+              onClick={handleAddToCart}
+            >
+              Add to cart
+            </button>
+          </div>
         </td>
       </tr>
     </>

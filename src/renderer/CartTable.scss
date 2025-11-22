@@ -1,0 +1,20 @@
+.cartTableContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 500px;
+}
+
+.totalContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.total {
+  font-size: 15px;
+  margin: 5px;
+}
+
+.clearCartBtn {
+  font-size: 12px;
+}
