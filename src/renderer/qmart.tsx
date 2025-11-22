@@ -34,11 +34,15 @@ export default function QMart() {
     <div className="container">
       <h1>Quick Mart</h1>
 
-      <Link to="/purchase/membership">
-        <button>New Purchase</button>
-      </Link>
+      <div className="btnContainer">
+        <Link to="/purchase/membership">
+          <button className="btn primary">New Purchase</button>
+        </Link>
 
-      <button onClick={handleInventoryLoad}>Load inventory from txt</button>
+        <button className="btn primary" onClick={handleInventoryLoad}>
+          Load Inventory
+        </button>
+      </div>
     </div>
   );
 }

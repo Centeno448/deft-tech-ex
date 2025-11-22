@@ -10,6 +10,7 @@ import { INDEX_ROUTE } from "./indexRoute";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import PurchaseComplete from "./PurchaseComplete";
+import "./App.scss";
 
 const root = createRoot(document.getElementById("root"));
 
