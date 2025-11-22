@@ -2,8 +2,8 @@ import { Link, useNavigate } from "react-router";
 import CartTable from "./CartTable";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { useState, ChangeEvent } from "react";
-import { clearPurchaseCart, payPurchase, updateInventory } from "./store";
-import { INDEX_ROUTE } from "./indexRoute";
+import { payPurchase, updateInventory } from "./store";
+import "./Checkout.scss";
 
 export default function Checkout() {
   const [cash, setCash] = useState(0);
@@ -32,25 +32,29 @@ export default function Checkout() {
 
   return (
     <>
-      <p>Checkout</p>
-
-      <Link to={"/purchase/cart"}>
-        <button>Back to cart</button>
-      </Link>
+      <p className="label">Checkout</p>
 
       <CartTable summaryMode={true} products={purchase.cart} />
 
-      <label>
-        Customer cash payment:{" "}
+      <div className="checkoutInputContainer">
+        <label>Customer cash payment:</label>
         <input
+          className="checkoutInput"
           type="number"
           defaultValue={cash}
           min={0}
           onChange={handleCashInput}
         />
-      </label>
+      </div>
 
-      <button onClick={handlePayment}>Confirm Payment</button>
+      <div className="checkoutBtnContainer">
+        <Link to={"/purchase/cart"}>
+          <button className="btn secondary">Back to cart</button>
+        </Link>
+        <button className="btn primary" onClick={handlePayment}>
+          Confirm Payment
+        </button>
+      </div>
     </>
   );
 }

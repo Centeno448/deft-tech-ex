@@ -10,7 +10,7 @@ export default function Membership() {
 
   return (
     <>
-      <p>Add products to the cart</p>
+      <p className="label">Add products to the cart</p>
 
       <div className="tableContainers">
         <ProductTable products={productsInInventory} />
