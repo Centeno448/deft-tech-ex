@@ -111,6 +111,7 @@ app.on("ready", async () => {
   ipcMain.on("inventory:update", updateInventoryFile);
   ipcMain.on("dialog:message", showMessageDialog);
   ipcMain.on("receipt:history", viewTransactionHistory);
+  ipcMain.on("app:quit", app.quit);
   log.info("Configured ipc handlers");
 
   createWindow();

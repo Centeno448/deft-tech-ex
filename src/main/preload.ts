@@ -26,3 +26,7 @@ contextBridge.exposeInMainWorld("dialog", {
   confirmDialog: (title: string, message: string) =>
     ipcRenderer.invoke("dialog:confirm", title, message),
 });
+
+contextBridge.exposeInMainWorld("electronApp", {
+  quit: () => ipcRenderer.send("app:quit"),
+});

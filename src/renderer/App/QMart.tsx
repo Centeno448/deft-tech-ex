@@ -34,6 +34,10 @@ export default function QMart() {
     window.receipts.viewTransactionHistory();
   };
 
+  const handleQuit = () => {
+    window.electronApp.quit();
+  };
+
   return (
     <div className="container">
       <h1>Quick Mart</h1>
@@ -49,6 +53,10 @@ export default function QMart() {
 
         <button className="btn secondary" onClick={handleViewTransactions}>
           View Transactions
+        </button>
+
+        <button className="btn danger" onClick={handleQuit}>
+          Quit
         </button>
       </div>
     </div>

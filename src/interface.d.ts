@@ -18,10 +18,15 @@ export interface IReceipts {
   viewTransactionHistory: () => void;
 }
 
+export interface IElectronApp {
+  quit: () => void;
+}
+
 declare global {
   interface Window {
     productInventory: IProductInventory;
     receipts: IReceipts;
     dialog: IDialog;
+    electronApp: IElectronApp;
   }
 }
