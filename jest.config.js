@@ -6,6 +6,7 @@ module.exports = {
   },
   clearMocks: true,
   moduleNameMapper: {
-    "@/(.*)": "<rootDir>/src/$1"
+    "@/(.*)": "<rootDir>/src/$1",
+    "@common/(.*)": "<rootDir>/src/common/$1"
   }
 };
