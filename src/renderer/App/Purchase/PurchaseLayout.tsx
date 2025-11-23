@@ -1,7 +1,8 @@
 import { Outlet } from "react-router";
 import { useNavigate } from "react-router";
-import { useAppDispatch } from "./hooks";
-import { cancelPurchase } from "./store";
+
+import { useAppDispatch } from "@hooks";
+import { cancelPurchase } from "@store";
 import "./PurchaseLayout.scss";
 
 export default function PurchaseLayout() {

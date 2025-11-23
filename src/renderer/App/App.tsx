@@ -1,14 +1,15 @@
-import React from "react";
 import { createRoot } from "react-dom/client";
-import QMart from "./QMart";
-import { HashRouter, Route, Routes } from "react-router";
-import Membership from "./Membership";
-import Cart from "./Cart";
-import Checkout from "./Checkout";
-import PurchaseLayout from "./PurchaseLayout";
 import { Provider } from "react-redux";
-import { store } from "./store";
-import PurchaseComplete from "./PurchaseComplete";
+import { HashRouter, Route, Routes } from "react-router";
+
+import { store } from "@store";
+import QMart from "./QMart";
+import Membership from "./Purchase/Membership";
+import Cart from "./Purchase/Cart/Cart";
+import Checkout from "./Purchase/Checkout";
+import PurchaseLayout from "./Purchase/PurchaseLayout";
+import PurchaseComplete from "./Purchase/PurchaseComplete";
+
 import "./App.scss";
 
 const root = createRoot(document.getElementById("root"));

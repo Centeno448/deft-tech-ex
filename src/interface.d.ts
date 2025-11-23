@@ -1,5 +1,5 @@
-import { Product } from "./common/product";
-import { purchaseState } from "./common/purchase";
+import { Product } from "@common/product";
+import { purchaseState } from "@common/purchase";
 
 export interface IProductInventory {
   initInventory: () => Promise<Product[]>;

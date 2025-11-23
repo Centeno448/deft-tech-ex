@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "./hooks";
-import { clearPurchaseCart } from "./store";
 import { Link } from "react-router";
+
+import { useAppDispatch, useAppSelector } from "@hooks";
+import { clearPurchaseCart } from "@store";
 import "./PurchaseComplete.scss";
 
 export default function PurchaseComplete() {

@@ -1,8 +1,9 @@
 import { Link } from "react-router";
-import { useAppSelector } from "./hooks";
-import "./Cart.scss";
+
+import { useAppSelector } from "@hooks";
 import CartTable from "./CartTable";
-import ProductTable from "./ProductTable";
+import ProductTable from "./Product/ProductTable";
+import "./Cart.scss";
 
 export default function Membership() {
   const productsInInventory = useAppSelector((s) => s.inventory.products);

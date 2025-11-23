@@ -1,9 +1,10 @@
 import path from "path";
 import { open, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { Product, TaxStatus } from "../common/product";
 import { app, IpcMainEvent, dialog, BrowserWindow } from "electron";
 import log from "electron-log";
+
+import { Product, TaxStatus } from "@common/product";
 
 const DEFAULT_INVENTORY = `Milk: 5, $3.75, $3.50, Tax-Exempt
 Red Bull: 10, $4.30, $4.00, Taxable

@@ -1,7 +1,8 @@
-import { parseProduct, initInventory, writeInventoryFile } from "./inventory";
-import { Product, TaxStatus } from "../common/product";
 import path from "path";
 import { rm } from "fs/promises";
+
+import { parseProduct, initInventory, writeInventoryFile } from "./inventory";
+import { Product, TaxStatus } from "@common/product";
 
 describe("parseProduct", () => {
   test("parses correctly with taxable", () => {

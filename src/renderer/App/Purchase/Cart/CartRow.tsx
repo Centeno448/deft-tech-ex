@@ -1,7 +1,7 @@
-import { CustomerType } from "../common/customerType";
-import { Product } from "../common/product";
-import { useAppDispatch, useAppSelector } from "./hooks";
-import { removePurchaseProduct } from "./store";
+import { CustomerType } from "@common/customerType";
+import { Product } from "@common/product";
+import { useAppDispatch, useAppSelector } from "@hooks";
+import { removePurchaseProduct } from "@store";
 import "./CartRow.scss";
 
 export interface CartRowProps {

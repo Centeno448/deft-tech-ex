@@ -1,8 +1,8 @@
-import { Product } from "../common/product";
-import { clearPurchaseCart } from "./store";
-import { useAppDispatch, useAppSelector } from "./hooks";
+import { Product } from "@common/product";
+import { clearPurchaseCart } from "@store";
+import { useAppDispatch, useAppSelector } from "@hooks";
+import { TAX_RATE_PERCENT } from "@common/purchase";
 import CartRow from "./CartRow";
-import { TAX_RATE_PERCENT } from "../common/purchase";
 import "./CartTable.scss";
 
 export interface CartTableProps {

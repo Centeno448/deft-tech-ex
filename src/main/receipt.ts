@@ -4,12 +4,13 @@ import { opendir, writeFile } from "fs/promises";
 import { existsSync, mkdirSync } from "node:fs";
 import dayjs from "dayjs";
 import { AsciiTable3, AlignmentEnum } from "ascii-table3";
+
 import {
   purchaseState,
   TAX_RATE_PERCENT,
   calculateChange,
-} from "../common/purchase";
-import { CustomerType } from "../common/customerType";
+} from "@common/purchase";
+import { CustomerType } from "@common/customerType";
 
 const USER_DATA_PATH = app ? app.getPath("userData") : "";
 const TRANSACTIONS_PATH = path.join(USER_DATA_PATH, "Transactions");

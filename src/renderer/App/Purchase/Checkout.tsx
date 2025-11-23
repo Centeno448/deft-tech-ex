@@ -1,8 +1,9 @@
-import { Link, useNavigate } from "react-router";
-import CartTable from "./CartTable";
-import { useAppDispatch, useAppSelector } from "./hooks";
 import { useState, ChangeEvent } from "react";
-import { payPurchase, updateInventory } from "./store";
+import { Link, useNavigate } from "react-router";
+
+import CartTable from "./Cart/CartTable";
+import { useAppDispatch, useAppSelector } from "@hooks";
+import { payPurchase, updateInventory } from "@store";
 import "./Checkout.scss";
 
 export default function Checkout() {

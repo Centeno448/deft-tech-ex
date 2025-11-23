@@ -7,16 +7,15 @@ import {
   session,
   globalShortcut,
 } from "electron";
+import log from "electron-log/main";
+import "dotenv/config";
+
 import {
   initInventoryWrapper,
   loadInventoryFromTxt,
   updateInventoryFile,
 } from "./inventory";
 import { writeReceipt, viewReceipt, viewTransactionHistory } from "./receipt";
-
-import "dotenv/config";
-
-import log from "electron-log/main";
 
 // Initialize the logger to be available in renderer process
 log.initialize();

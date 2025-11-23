@@ -1,8 +1,9 @@
 import { ChangeEvent, useState } from "react";
-import { CustomerType } from "../common/customerType";
-import { Product } from "../common/product";
-import { useAppDispatch, useAppSelector } from "./hooks";
-import { addPurchaseProduct } from "./store";
+
+import { CustomerType } from "@common/customerType";
+import { Product } from "@common/product";
+import { useAppDispatch, useAppSelector } from "@hooks";
+import { addPurchaseProduct } from "@store";
 import "./ProductRow.scss";
 
 export interface ProductRowProps {

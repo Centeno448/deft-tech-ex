@@ -1,7 +1,8 @@
-import { useAppDispatch } from "./hooks";
-import { setPurchaseCustomer } from "./store";
-import { CustomerType } from "../common/customerType";
 import { useNavigate } from "react-router";
+
+import { useAppDispatch } from "@hooks";
+import { setPurchaseCustomer } from "@store";
+import { CustomerType } from "@common/customerType";
 import "./Membership.scss";
 
 export default function Membership() {

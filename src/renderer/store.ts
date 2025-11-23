@@ -4,14 +4,15 @@ import {
   PayloadAction,
   WritableDraft,
 } from "@reduxjs/toolkit";
-import { Product } from "../common/product";
-import { CustomerType } from "../common/customerType";
+
+import { Product } from "@common/product";
+import { CustomerType } from "@common/customerType";
 import {
   calculateSubTotal,
   calculateTax,
   calculateSavings,
   purchaseState,
-} from "../common/purchase";
+} from "@common/purchase";
 
 const inventoryInitialState: { products: Product[]; fileNeedsUpdate: boolean } =
   {
