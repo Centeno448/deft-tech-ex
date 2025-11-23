@@ -24,7 +24,7 @@ Simple electron desktop application that allows users to load product inventory,
 
 #### Windows
 
-Download and run the installer in the [github release](https://github.com/Centeno448/deft-tech-ex/releases/tag/V1.0.0) and the app will install and run with the app name `deft-tech-ex`.
+Download and run the installer in the [github release](https://github.com/Centeno448/deft-tech-ex/releases/tag/V1.0.0) (Windows defender may make a fuss because the app is not signed, just click `more options` and install anyways) and the app will install and run with the app name `deft-tech-ex`.
 
 #### Linux
 
