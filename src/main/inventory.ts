@@ -3,6 +3,7 @@ import { open, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { Product, TaxStatus } from "../common/product";
 import { app, IpcMainEvent, dialog, BrowserWindow } from "electron";
+import log from "electron-log";
 
 const DEFAULT_INVENTORY = `Milk: 5, $3.75, $3.50, Tax-Exempt
 Red Bull: 10, $4.30, $4.00, Taxable
@@ -23,7 +24,8 @@ async function loadProductsFromFile(filePath: string): Promise<Product[]> {
       if (product) {
         products.push(product);
       }
-    } catch {
+    } catch (e) {
+      log.error(`Failed to parse product\nline: ${line}\nError${e}`);
       continue;
     }
   }
@@ -39,8 +41,8 @@ export async function initInventory(inventoryPath: string): Promise<Product[]> {
   if (!existsSync(inventoryPath)) {
     try {
       await writeFile(inventoryPath, DEFAULT_INVENTORY);
-    } catch {
-      console.error("Failed to write default inventory file");
+    } catch (e) {
+      log.error("Failed to write default inventory file", e);
       return [];
     }
   }
@@ -94,8 +96,8 @@ export async function writeInventoryFile(
       )
       .join("\n");
     await writeFile(inventoryPath, update);
-  } catch {
-    console.error("Failed to update inventory file");
+  } catch (e) {
+    log.error("Failed to update inventory file", e);
   }
 }
 
