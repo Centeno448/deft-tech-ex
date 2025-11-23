@@ -16,12 +16,16 @@ const TRANSACTIONS_PATH = path.join(USER_DATA_PATH, "Transactions");
 
 const transactionRegex = /transaction_(\d+)_\d+/;
 
+function mkDirIfNotExists(dirPath: string) {
+  if (!existsSync(dirPath)) {
+    mkdirSync(dirPath);
+  }
+}
+
 export async function getLastTransactionNumber(
   transactionDir: string
 ): Promise<number> {
-  if (!existsSync(transactionDir)) {
-    mkdirSync(transactionDir);
-  }
+  mkDirIfNotExists(transactionDir);
 
   const dir = await opendir(transactionDir);
 
@@ -102,5 +106,7 @@ export function viewReceipt(_: IpcMainEvent, receiptPath: string) {
 }
 
 export function viewTransactionHistory(_: IpcMainEvent) {
+  mkDirIfNotExists(TRANSACTIONS_PATH);
+
   shell.openPath(TRANSACTIONS_PATH);
 }
