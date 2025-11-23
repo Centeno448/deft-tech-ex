@@ -15,8 +15,8 @@
     "paths": {
       "*": ["node_modules/*"],
       "@common/*": ["src/common/*"],
-      "@store": ["src/renderer/store"],
-      "@hooks": ["src/renderer/hooks"]
+      "@store": ["src/renderer/redux/store"],
+      "@hooks": ["src/renderer/redux/hooks"]
     }
   },
   "include": ["src/**/*"],
