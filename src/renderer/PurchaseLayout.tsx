@@ -1,5 +1,4 @@
 import { Outlet } from "react-router";
-import { INDEX_ROUTE } from "./indexRoute";
 import { useNavigate } from "react-router";
 import { useAppDispatch } from "./hooks";
 import { cancelPurchase } from "./store";
@@ -17,7 +16,7 @@ export default function PurchaseLayout() {
 
     if (confirmation) {
       dispatch(cancelPurchase());
-      navigate(INDEX_ROUTE);
+      navigate("/");
     }
   };
 

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { clearPurchaseCart } from "./store";
 import { Link } from "react-router";
-import { INDEX_ROUTE } from "./indexRoute";
 import "./PurchaseComplete.scss";
 
 export default function PurchaseComplete() {
@@ -40,7 +39,7 @@ export default function PurchaseComplete() {
             View Receipt
           </button>
 
-          <Link to={INDEX_ROUTE}>
+          <Link to="/">
             <button className="btn primary">Back to Home</button>
           </Link>
         </div>
