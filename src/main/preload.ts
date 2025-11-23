@@ -7,6 +7,7 @@ import { purchaseState } from "@common/purchase";
 
 contextBridge.exposeInMainWorld("productInventory", {
   initInventory: () => ipcRenderer.invoke("inventory:init"),
+  viewInventory: () => ipcRenderer.send("inventory:view"),
   updateInventory: (products: Product[]) =>
     ipcRenderer.send("inventory:update", products),
   loadInventoryFromFile: () => ipcRenderer.invoke("inventory:load"),

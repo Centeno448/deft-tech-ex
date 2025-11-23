@@ -1,7 +1,7 @@
 import path from "path";
 import { open, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { app, IpcMainEvent, dialog, BrowserWindow } from "electron";
+import { app, IpcMainEvent, dialog, BrowserWindow, shell } from "electron";
 import log from "electron-log";
 
 import { Product, TaxStatus } from "@common/product";
@@ -118,4 +118,8 @@ export function parseProduct(line: string): Product {
   const taxStatus = res[7] as TaxStatus;
 
   return { name, amount, regularPrice, memberPrice, taxStatus };
+}
+
+export function viewInventory() {
+  shell.openPath(INVENTORY_PATH);
 }

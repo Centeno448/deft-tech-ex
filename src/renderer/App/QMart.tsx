@@ -30,6 +30,10 @@ export default function QMart() {
     await window.productInventory.loadInventoryFromFile();
   };
 
+  const handleViewInventory = () => {
+    window.productInventory.viewInventory();
+  };
+
   const handleViewTransactions = () => {
     window.receipts.viewTransactionHistory();
   };
@@ -49,6 +53,10 @@ export default function QMart() {
 
         <button className="btn secondary" onClick={handleInventoryLoad}>
           Load Inventory
+        </button>
+
+        <button className="btn secondary" onClick={handleViewInventory}>
+          View Inventory
         </button>
 
         <button className="btn secondary" onClick={handleViewTransactions}>

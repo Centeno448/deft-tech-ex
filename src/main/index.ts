@@ -14,6 +14,7 @@ import {
   initInventoryWrapper,
   loadInventoryFromTxt,
   updateInventoryFile,
+  viewInventory,
 } from "./inventory";
 import { writeReceipt, viewReceipt, viewTransactionHistory } from "./receipt";
 
@@ -109,6 +110,7 @@ app.on("ready", async () => {
   ipcMain.handle("dialog:confirm", showConfirmationDialog);
   ipcMain.on("receipt:view", viewReceipt);
   ipcMain.on("inventory:update", updateInventoryFile);
+  ipcMain.on("inventory:view", viewInventory);
   ipcMain.on("dialog:message", showMessageDialog);
   ipcMain.on("receipt:history", viewTransactionHistory);
   ipcMain.on("app:quit", app.quit);

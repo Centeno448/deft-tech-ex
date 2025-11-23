@@ -5,6 +5,7 @@ export interface IProductInventory {
   initInventory: () => Promise<Product[]>;
   updateInventory: (products: Product[]) => Promise<void>;
   loadInventoryFromFile: () => Promise<void>;
+  viewInventory: () => void;
 }
 
 export interface IDialog {
